@@ -39,7 +39,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development"
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "author": "ymin1103@gmail.com",
   "homepage": "https://ymin1103.github.io/pokefinderv2",
