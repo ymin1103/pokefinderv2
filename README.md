@@ -1,5 +1,5 @@
 # pokefinderv2
-<h3>Easy pokemon finder for those from korean.</h3>
+<h3>Easy pokemon finder for those from korea.</h3>
 
 following is the link to the site.
 
