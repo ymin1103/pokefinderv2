@@ -49,7 +49,10 @@ class App extends React.Component {
     
     render(){
         return (
-            <div>    
+            <div>
+                <header class="text-center pb-3 bg-dark">
+                    <h1 class="display-4 font-weight-light text-white">PokeFinder</h1>
+                </header>    
                 <SearchBar ChangeEvent={this.handleChange} ClickEvent={this.handleClick}/>
                     <div className="d-flex justify-content-center pb-3 bg-dark text-white">
                         <i className="fas fa-angle-double-left fa-2x mr-4 border-bottom" onClick={() =>{this.handleArrowClick(-5)}}></i>
@@ -63,12 +66,16 @@ class App extends React.Component {
                         :<p>Find Pokemon you want.</p>
                     : <Error/>
                 }
+                <footer class="text-center pb-3 bg-dark">
+                    <p class="h4 font-weight-light text-white">Made by ymin1103.</p>
+                    <p class="h4 font-weight-light text-white">Used Pokeapi v2.0.</p>
+                </footer>
             </div>    
         )
     }
 }
 
-ReactDOM.render(<App />, document.querySelector('.content'));
+ReactDOM.render(<App />, document.querySelector('.main'));
 
 
 
