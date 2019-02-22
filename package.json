@@ -42,5 +42,6 @@
     "dev": "webpack --mode development"
   },
   "author": "ymin1103@gmail.com",
+  "homepage": "https://ymin1103.github.io/pokefinderv2",
   "license": "ISC"
 }
