@@ -68,12 +68,17 @@ class MoveInfo extends React.Component {
         }
     }
 
+    ToggleButton(props){
+        let ArrowDirection = props.toggleVal === true ? "up" : "down";
+        return (<i class={`fas fa-arrow-${ArrowDirection}`} onClick={props.ClickEvent}></i>)
+    }
+
     render() {
         return (
             <div className="container-fluid pl-0 pr-0">
                 <div className="d-flex justify-content-between mb-3 border-bottom">
                     <h3 className="mb-0">machine</h3>
-                    <i class="fas fa-arrow-down" onClick={() => { this.handleToggleClick("machine")}}></i>
+                    <this.ToggleButton toggleVal={this.state.machineToggle} ClickEvent={() => { this.handleToggleClick("machine")}}/>
                 </div>
                 { this.state.machineToggle === true &&
                     <UI.movesubBox>
@@ -82,7 +87,7 @@ class MoveInfo extends React.Component {
                 }
                 <div className="d-flex justify-content-between mb-3 border-bottom">
                     <h3 className="mb-0">level-up</h3>
-                    <i class="fas fa-arrow-down" onClick={() => { this.handleToggleClick("level-up") }}></i>
+                    <this.ToggleButton toggleVal={this.state.levelToggle} ClickEvent={() => { this.handleToggleClick("level-up") }} />
                 </div>
                 {this.state.levelToggle === true &&
                     <UI.movesubBox>
@@ -91,7 +96,7 @@ class MoveInfo extends React.Component {
                 }
                 <div className="d-flex justify-content-between mb-3 border-bottom">
                     <h3 className="mb-0">tutor</h3>
-                    <i class="fas fa-arrow-down" onClick={() => { this.handleToggleClick("tutor") }}></i>
+                    <this.ToggleButton toggleVal={this.state.tutorToggle} ClickEvent={() => { this.handleToggleClick("tutor") }} />
                 </div>
                 {this.state.tutorToggle === true &&
                     <UI.movesubBox>
@@ -101,6 +106,7 @@ class MoveInfo extends React.Component {
             </div>
         )
     }
+
 }
 
 export default MoveInfo;

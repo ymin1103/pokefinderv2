@@ -29,8 +29,8 @@ class BasicInfo extends React.Component {
                 return (<p className={`type-${e.name} ml-1 mr-1`}>{e.names[Languages.korean - 2].name}</p>)
             }),
             flavorText: this.props.data.flavorText.map((e)=>{
-                return (<div className="row d-flex justify-content-between">
-                            <p className="col-3">{e.version.name}</p>
+                return (<div className="row d-flex justify-content-between border-bottom align-items-center">
+                            <p className="col-3 font-weight-bold">{e.version.name}</p>
                             <p className="col-9">{e.flavor_text}</p>
                         </div>)
             })
