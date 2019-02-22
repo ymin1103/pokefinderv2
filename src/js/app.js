@@ -75,7 +75,7 @@ class App extends React.Component {
     }
 }
 
-ReactDOM.render(<App />, document.querySelector('.main'));
+ReactDOM.render(<App />, document.querySelector('#main'));
 
 
 
