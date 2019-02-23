@@ -78,9 +78,9 @@ class MoveInfo extends React.Component {
             <div className="container-fluid pl-0 pr-0">
                 <div className="d-flex justify-content-between mb-3 border-bottom">
                     <h3 className="mb-0">machine</h3>
-                    <this.ToggleButton toggleVal={this.state.machineToggle} ClickEvent={() => { this.handleToggleClick("machine")}}/>
+                    <this.ToggleButton toggleVal={this.state.machineToggle} ClickEvent={() => { this.handleToggleClick("machine") }} />
                 </div>
-                { this.state.machineToggle === true &&
+                {this.state.machineToggle === true &&
                     <UI.movesubBox>
                         <ul>{this.makeMoveData("machine")}</ul>
                     </UI.movesubBox>
