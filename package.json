@@ -1,6 +1,6 @@
 {
   "name": "pokefinder",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Simple pokemon searcher",
   "main": "index.js",
   "devDependencies": {
@@ -40,7 +40,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "master-pull":"git pull https://github.com/ymin1103/pokefinderv2 master",
+    "master-push": "git push https://github.com/ymin1103/pokefinderv2 master",
+    "gh-page-push": "git push https://github.com/ymin1103/pokefinderv2 master"
   },
   "author": "ymin1103@gmail.com",
   "homepage": "https://ymin1103.github.io/pokefinderv2",

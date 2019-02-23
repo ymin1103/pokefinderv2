@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import Search from './Search';
 import SearchBar from './components/SearchBar';
 import SearchResult from './components/SearchResult';
+import Loading from './components/Loading';
+import Hello from './components/Hello';
 import Error from './components/Error';
 import '../scss/index.scss';
 
@@ -12,7 +14,9 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            data:{id:-1}
+            data:{id:-1,
+                  searching:false
+                }
         }
         this.handleClick=this.handleClick.bind(this);
         this.handleChange=this.handleChange.bind(this);
@@ -26,12 +30,14 @@ class App extends React.Component {
 
     async handleClick(e){
         e.preventDefault();
+        this.setState({searching:true});
         let gotData = await Search.GetData(this.state.val);
-        this.setState({data:gotData});
+        this.setState({data:gotData, searching:false});
     }
 
     async handleArrowClick(num){
         let destination = this.state.data.id + num;
+        this.setState({ searching: true });
         if (this.state.data.id === -1 || this.state.data.id === 0)
         {   
             destination = 1;
@@ -44,16 +50,16 @@ class App extends React.Component {
             destination = destination + 807;
         }
         let gotData = await Search.GetData(destination);
-        this.setState({ data: gotData });
+        this.setState({ data: gotData, searching: false });
     }
-    
+
     render(){
         return (
             <div>
                 <header class="text-center pb-3 bg-dark">
                     <h1 class="display-4 font-weight-light text-white">PokeFinder</h1>
-                </header>    
-                <SearchBar ChangeEvent={this.handleChange} ClickEvent={this.handleClick}/>
+                </header>
+                    <SearchBar ChangeEvent={this.handleChange} ClickEvent={this.handleClick}/>
                     <div className="d-flex justify-content-center pb-3 bg-dark text-white">
                         <i className="fas fa-angle-double-left fa-2x mr-4 border-bottom" onClick={() =>{this.handleArrowClick(-5)}}></i>
                         <i className="fas fa-angle-left fa-2x mr-4 ml-4 border-bottom" onClick={()=>{this.handleArrowClick(-1)}}></i>
@@ -62,8 +68,10 @@ class App extends React.Component {
                     </div>
                 { this.state.data.id!==0 ?
                     this.state.data.id!==-1 ?
-                        <SearchResult result={this.state.data}/>
-                        :<p>Find Pokemon you want.</p>
+                        this.state.searching===false ?
+                            <SearchResult result={this.state.data}/>
+                            :<Loading/>
+                        :<Hello/>
                     : <Error/>
                 }
                 <footer class="text-center pb-3 bg-dark">
