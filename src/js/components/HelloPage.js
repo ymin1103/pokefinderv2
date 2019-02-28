@@ -4,7 +4,7 @@ import ui from './ui';
 const Hello = () => {
     return (
         <ui.Box>
-            <p>Find Pokemon you want.</p>
+            <p className="h2 text-center font-weight-light">Find Pokemon you want.</p>
         </ui.Box> 
     )
 }

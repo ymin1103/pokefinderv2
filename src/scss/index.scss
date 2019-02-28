@@ -2,9 +2,11 @@
 @import "../../node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
 @import "../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-@import "./color.scss";
+@import "./config/color.scss";
 @import "./reset.scss";
-@import "./basicInfo.scss";
-@import "./MoveInfo.scss";
-@import "./scrollBar.scss";
-@import "./SearchBar.scss";
+@import "./config/animation.scss";
+@import "./config/scrollBar.scss";
+@import "./components/info/basicInfo.scss";
+@import "./components/info/MoveInfo.scss";
+@import "./components/search/SearchBar.scss";
+@import "./components/info/EvolutionInfo.scss";

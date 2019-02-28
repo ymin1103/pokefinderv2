@@ -1,7 +1,7 @@
 import React from 'react';
 import UI from './ui';
 
-const Error = () => {
+const ErrorPage = () => {
     return(
         <UI.Box>
             <div className="d-flex flex-column align-items-center">
@@ -12,4 +12,4 @@ const Error = () => {
     )
 }
 
-export default Error;
+export default ErrorPage;
