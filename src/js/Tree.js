@@ -1,8 +1,7 @@
 class Node {
     constructor(val) {
         this.value = val;
-        this.parent = null,
-            this.child = []
+        this.child = []
     }
 }
 
@@ -12,18 +11,26 @@ class Tree {
         this.root = newNode;
     }
 
-    insert(value, parentNode = this.root) {
-        parentNode.child.push(new Node(value));
-    }
-
     traverse(node, callback) {
 
-        callback(node);
+       callback(node);
         if (node.child.length !== 0) {
             for (let i = 0; i < node.child.length; i++) {
-                this.traverse(node.child[i], callback);
+                 this.traverse(node.child[i], callback);
             }
 
+        }
+    }
+
+    insert(value, parentNode = this.root) {
+        if(parentNode.child.length===0)
+        {
+            parentNode.child.push(new Node(value));
+        }
+        else{
+            for(let i=0; i< parentNode.child.length;i++){
+            this.insert(value, parentNode.child[i]);
+            }
         }
     }
 }

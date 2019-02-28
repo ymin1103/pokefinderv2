@@ -1,4 +1,4 @@
-import Elements from './elements';
+import Tree from './Tree';
 
 const Pokedex = require('pokeapi-js-wrapper');
 const options = {
@@ -32,7 +32,6 @@ const Search = {
         };
     
         await P.getPokemonByName(input).then(async (resolve) => { 
-              
             data.basic = resolve;
 
             await P.getPokemonSpeciesByName(input).then((resolve) => {
@@ -61,7 +60,8 @@ const Search = {
             else{
                 processedData.pokedexNo.push(data.spec.id);
             }
-            processedData.name = data.spec.names.reverse();
+            processedData.name = data.spec.names[0].language.name==="zh-Hans"? 
+                data.spec.names.reverse() : data.spec.names;
             processedData.body = {
                 height: data.basic.height,
                 weight: data.basic.weight
@@ -75,23 +75,61 @@ const Search = {
                 processedData.flavorText.push(e);
                 }
             })
+            
+            const ETree = new Tree({
+                id:undefined,
+                names: [],
+                sprites: {},
+                evolution_details: []
+            });
 
-            const getEvolve = (N,C) => {
-                C(N);
-                if (N.evolves_to.length !== 0) {
-                    for (let i = 0; i < N.evolves_to.length; i++) {
-                        getEvolve(N.evolves_to[i], C);
+            const getEvolve = (Node,Callback) => {
+                Callback(Node);
+                if (Node.evolves_to.length !== 0) {
+                    for (let i = 0; i < Node.evolves_to.length; i++) {
+                        getEvolve(Node.evolves_to[i], Callback);
                     }
 
                 }
             }
-
-            getEvolve(data.evolution.chain, (node) => {
-                processedData.evolution.push(
-                    {details:node.evolution_details,species:node.species}
+            //let ite = 1;
+            getEvolve(data.evolution.chain, async (node) => {
+                /*processedData.evolution.push(
+                    {details:node.evolution_details,species:node.species,result:{}}
                     );
-            })
+                ite++;
+                console.log(ite);*/
+                
+                let TempObj = {
+                    id:undefined,
+                    names:[],
+                    sprites:[],
+                    evolution_details:{}
+                };
+                
+                TempObj.evolution_details = node.evolution_details;
 
+            await P.getPokemonByName(node.species.url
+                   .substr(42, node.species.url.length - 43)).then(
+                    async (resolve)=>{
+                        
+                        TempObj.id = resolve.id;
+                        TempObj.sprites=resolve.sprites;
+
+                    await P.getPokemonSpeciesByName(node.species.url
+                    .substr(42, node.species.url.length - 43)).then(
+                        (resolve) =>{
+                            
+                        TempObj.names=resolve.names[0].language.name==="zh-Hans"?
+                        resolve.names.reverse() : resolve.names;
+
+                        ETree.insert(TempObj);
+                    
+                    }) 
+            })
+        })
+            
+            processedData.evolution = ETree;
             
             for (let i = 0; i < data.moves.length; i++) {
                 processedData.moves[i].method = data.basic.moves[i].version_group_details;
@@ -111,15 +149,36 @@ const Search = {
                 await P.getAbilityByName(data.basic.abilities[i].ability.url
                     .substr(34, data.basic.abilities[i].ability.url.length - 35)).then(
                         (resolve) => {
-                            processedData.abilities.push(resolve);
+                            processedData.abilities.push({...resolve,
+                                is_hidden:data.basic.abilities[i].is_hidden,
+                                slot:data.basic.abilities[i].slot});
                         }
                 ).catch((reject) => { console.log(reject); });
             };
+            
+            for(let i=0; i<processedData.evolution.length; i++) { 
+                /*await P.getPokemonByName(processedData.evolution[i].species.url
+                    .substr(42, processedData.evolution[i].species.url.length - 43)).then(
+                    (resolve)=>{
+                        processedData.evolution[i].result.sprites=resolve.sprites;
+                    
+                    })*/
+            
+                await P.getPokemonSpeciesByName(processedData.evolution[i].species.url
+                    .substr(42, processedData.evolution[i].species.url.length - 43)).then(
+                        (resolve) =>{
+                        processedData.evolution[i].result.names=resolve.names[0].language.name==="zh-Hans"?
+                        resolve.names.reverse() : resolve.names;
+                        //Due to API's indexing problem, just temporary
+                        })
+
+                    
+            };
+            
 
 
         }).catch((reject)=>{console.log(reject);});
 
-    
         console.log(data);
         console.log(processedData);
 

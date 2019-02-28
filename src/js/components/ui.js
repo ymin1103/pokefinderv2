@@ -24,6 +24,11 @@ const UI = {
                 {props.children}
             </div>
         )
+    },
+
+    toggleButton: (props) => {
+        let ArrowDirection = props.toggleVal === true ? "up" : "down";
+        return (<i className={`fas fa-arrow-${ArrowDirection}`} onClick={props.ClickEvent}></i>)
     }
 }
 
