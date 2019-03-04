@@ -15,10 +15,12 @@ class App extends React.Component {
         super(props);
         this.state = {
             data:{id:-1},
-            searching: false
+            searching: false,
+            initiate:false
         }
         this.handleClick=this.handleClick.bind(this);
         this.handleChange=this.handleChange.bind(this);
+        this.handleArrowClick=this.handleArrowClick.bind(this);
     }
 
     handleChange(e) {
@@ -28,23 +30,13 @@ class App extends React.Component {
 
     async handleClick(event, input = this.state.val){
         event.preventDefault();
-        this.setState({ searching: true,
-            toggle: {
-                machine: false,
-                level: false,
-                tutor: false
-            } });
+        this.setState({ searching: true, initiate : true });
         let gotData = await Search.GetData(input);
         this.setState({data:gotData, searching: false});
     }
 
     async handleArrowClick(num){
-        this.setState({ searching: true,
-            toggle: {
-                machine: false,
-                level: false,
-                tutor: false
-            } });
+        this.setState({ searching: true, initiate : true });
         let destination = this.state.data.id + num;
         if (this.state.data.id === -1 || this.state.data.id === 0)
         {   
@@ -60,6 +52,7 @@ class App extends React.Component {
         let gotData = await Search.GetData(destination);
         this.setState({ data: gotData, searching:false});
     }
+
 
     
 
@@ -77,17 +70,16 @@ class App extends React.Component {
                     <h1 className="display-4 font-weight-light text-white">PokeFinder</h1>
                 </header>
                 <SearchBar isInvisible={this.state.searching}
+                           isStarted={this.state.initiate}
                            ChangeEvent={this.handleChange} 
                            ClickEvent={this.handleClick}/>
                 <SearchArrow isInvisible={this.state.searching}
-                             ClickEvent={{
-                                 dleft: () =>{this.handleArrowClick(-5)},
-                                 left: () => { this.handleArrowClick(-1)},
-                                 right: () => { this.handleArrowClick(1)},
-                                 dright: () => {this.handleArrowClick(5)}
-                             }
-                }/>
-                <Page data={this.state.data} searching={this.state.searching} handleClick={this.handleClick}/>
+                             isStarted={this.state.initiate}
+                             ClickEvent={this.handleArrowClick}/>
+                <Page data={this.state.data}
+                      isStarted={this.state.initiate}
+                      searching={this.state.searching} 
+                      handleClick={this.handleClick}/>
                 <footer className="text-center pb-3 bg-dark">
                     <p className="h4 font-weight-light text-white">Made by ymin1103.</p>
                     <p className="h4 font-weight-light text-white">Used Pokeapi v2.0.</p>
