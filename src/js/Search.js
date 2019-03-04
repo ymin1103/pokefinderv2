@@ -92,14 +92,12 @@ const Search = {
 
                 }
             }
-            //let ite = 1;
+
             getEvolve(data.evolution.chain, async (node) => {
-                /*processedData.evolution.push(
+                processedData.evolution.push(
                     {details:node.evolution_details,species:node.species,result:{}}
                     );
-                ite++;
-                console.log(ite);*/
-                
+                /*
                 let TempObj = {
                     id:undefined,
                     names:[],
@@ -126,10 +124,10 @@ const Search = {
                         ETree.insert(TempObj);
                     
                     }) 
-            })
+            })*/
         })
             
-            processedData.evolution = ETree;
+            //processedData.evolution = ETree;
             
             for (let i = 0; i < data.moves.length; i++) {
                 processedData.moves[i].method = data.basic.moves[i].version_group_details;
@@ -157,12 +155,13 @@ const Search = {
             };
             
             for(let i=0; i<processedData.evolution.length; i++) { 
-                /*await P.getPokemonByName(processedData.evolution[i].species.url
+                await P.getPokemonByName(processedData.evolution[i].species.url
                     .substr(42, processedData.evolution[i].species.url.length - 43)).then(
                     (resolve)=>{
                         processedData.evolution[i].result.sprites=resolve.sprites;
+                        processedData.evolution[i].result.id=resolve.id;
                     
-                    })*/
+                    })
             
                 await P.getPokemonSpeciesByName(processedData.evolution[i].species.url
                     .substr(42, processedData.evolution[i].species.url.length - 43)).then(
@@ -177,7 +176,7 @@ const Search = {
             
 
 
-        }).catch((reject)=>{console.log(reject);});
+        }).catch((reject)=>{console.log(reject); return;});
 
         console.log(data);
         console.log(processedData);

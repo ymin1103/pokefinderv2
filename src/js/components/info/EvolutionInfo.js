@@ -14,6 +14,7 @@ class EvolutionInfo extends React.PureComponent {
     }
 
     componentDidMount(){
+        /*
         const evolArray = [];
 
         this.props.data.traverse(this.props.data.root, async (node) => {
@@ -40,19 +41,26 @@ class EvolutionInfo extends React.PureComponent {
                 </div>
             )
         })
-
-        /*
+        */
+        
         const Evoldata = this.props.data.map((e)=>{
             return(
                 <div className="d-flex flex-column justify-content-center">
-                    <img src={e.result.sprites.front_default} alt="No image :("/>
+                    {e.result.sprites.front_default !== null ?
+                    <img src={e.result.sprites.front_default} 
+                         alt="No image :("
+                         class="evol-img"
+                         onClick={() => this.props.handleClick(event, e.result.id)}/>:
+                        <i className="fas fa-5x fa-cat mb-3"
+                         onClick={() => this.props.handleClick(event, e.result.id)}></i>
+                    }
                     <p className="text-center">{e.result.names.length === 11 ?
                             e.result.names[Languages.korean - 1].name :
                             e.result.names[Languages.korean - 2].name}</p>
                 </div>
                     )
         })
-        */
+        
 
         this.setState({eInfo:Evoldata});
     }

@@ -10,14 +10,14 @@ class Page extends React.Component {
         return (
             <div>
                 {
-                    this.props.data.id !== 0 ?
-                        this.props.data.id !== -1 ?
+                    this.props.isStarted !== false ?
+                        this.props.data.id !== 0 ?
                             this.props.searching === false ?
                                 <SearchResult result={this.props.data} 
                                               handleClick={this.props.handleClick}/>
                                 : <Loading />
-                            : <Hello />
-                        : <ErrorPage />
+                            : <ErrorPage/>
+                        : <Hello />
                 }
             </div>
         )
