@@ -1,5 +1,6 @@
 import Tree from './Tree';
 
+
 const Pokedex = require('pokeapi-js-wrapper');
 const options = {
     protocol: 'https',
@@ -11,6 +12,25 @@ const options = {
 const P = new Pokedex.Pokedex(options);
 
 const Search = {
+
+    GetResults: async (inputArray) => {
+        console.log(inputArray);
+        const results = [];
+
+        inputArray.map( async (e)=>{
+            await P.getPokemonByName(e.id).then((resolve)=>{
+                results.push(
+                    {
+                        id:e.id,
+                        name:e.name,
+                        types:resolve.types,
+                        img:resolve.sprites.front_default
+                    }
+                )
+            })
+        })
+        return results;
+    },
 
     GetData : async (input) => {
 
@@ -181,6 +201,21 @@ const Search = {
 
         console.log(data);
         console.log(processedData);
+        /*
+        const Names = [];
+
+        for(let i=0;i<807;i++)
+        {
+            const TempNames = {};
+            await P.getPokemonSpeciesByName(i+1).then((resolve)=>{
+                TempNames = resolve.names[0].language.name === "zh-Hans" ?
+                    resolve.names.reverse() : resolve.names;
+                Names.push(TempNames.length === 11 ?
+                    TempNames[2].name :
+                    TempNames[1].name)
+            })
+        }
+        console.log(Names);*/
 
         return processedData;
     }

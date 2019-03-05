@@ -7,6 +7,8 @@ import SearchBar from './components/search/SearchBar';
 import Page from './Page';
 import '../scss/index.scss';
 
+import ProcessHangul from './ProcessHangul';
+
 
 
 class App extends React.Component {
@@ -14,13 +16,17 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            data:{id:-1},
+            data:{id:0},
             searching: false,
-            initiate:false
+            initiate:false,
+            searchResults: [],
+            val:""
         }
+        this.handleSearchClick = this.handleSearchClick.bind(this);
         this.handleClick=this.handleClick.bind(this);
         this.handleChange=this.handleChange.bind(this);
         this.handleArrowClick=this.handleArrowClick.bind(this);
+        
     }
 
     handleChange(e) {
@@ -28,9 +34,17 @@ class App extends React.Component {
         e.preventDefault();
     }
 
+    async handleSearchClick(){
+        this.setState({ searching: true, initiate: true }, async ()=>{
+            const gotRes = await Search.GetResults(ProcessHangul(this.state.val));
+            this.setState({ searchResults: gotRes, searching: false });
+        });
+        
+    }
+
     async handleClick(event, input = this.state.val){
         event.preventDefault();
-        this.setState({ searching: true, initiate : true });
+        this.setState({ searching: true, initiate : true});
         let gotData = await Search.GetData(input);
         this.setState({data:gotData, searching: false});
     }
@@ -56,7 +70,7 @@ class App extends React.Component {
 
     
 
-    componentDidUpdate(prevProps,prevState){
+    omponentDidUpdate(prevProps,prevState){
         if(prevState.val===this.state.val){
         document.getElementsByClassName("s-bar")[0].value = "";
         console.log("component did update");
@@ -64,6 +78,7 @@ class App extends React.Component {
     }
 
     render(){
+        console.log("render app")
         return (
             <div>
                 <header className="text-center pb-3 bg-dark">
@@ -72,14 +87,11 @@ class App extends React.Component {
                 <SearchBar isInvisible={this.state.searching}
                            isStarted={this.state.initiate}
                            ChangeEvent={this.handleChange} 
-                           ClickEvent={this.handleClick}/>
-                <SearchArrow isInvisible={this.state.searching}
-                             isStarted={this.state.initiate}
-                             ClickEvent={this.handleArrowClick}/>
-                <Page data={this.state.data}
+                           ClickEvent={this.handleSearchClick}/>
+                <Page
                       isStarted={this.state.initiate}
                       searching={this.state.searching} 
-                      handleClick={this.handleClick}/>
+                      searchResults={this.state.searchResults}/>
                 <footer className="text-center pb-3 bg-dark">
                     <p className="h4 font-weight-light text-white">Made by ymin1103.</p>
                     <p className="h4 font-weight-light text-white">Used Pokeapi v2.0.</p>
@@ -89,6 +101,7 @@ class App extends React.Component {
     }
 }
 ReactDOM.render(<App />, document.querySelector('#main'));
+
 
 
 

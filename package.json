@@ -34,7 +34,7 @@
     "gh-page-push": "git push https://github.com/ymin1103/pokefinderv2 master"
   },
   "author": "ymin1103@gmail.com",
-  "homepage": "https://ymin1103.github.io/pokefinderv2",
+  "homepage": "https://ymin1103.github.io/pokefinderv2/dist/index",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.3.4",
