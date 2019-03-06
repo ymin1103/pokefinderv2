@@ -2,7 +2,6 @@ import Hangul from 'hangul-js';
 import Searchdata from './config/Searchdata';
 
 const ProcessHangul = (input) => {
-    console.log(input);
     const Result = [];
 
         if (Hangul.isCompleteAll(input) === true &&

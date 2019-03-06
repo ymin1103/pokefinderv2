@@ -14,7 +14,6 @@ const P = new Pokedex.Pokedex(options);
 const Search = {
 
     GetResults: async (inputArray) => {
-        console.log(inputArray);
         const results = [];
 
         inputArray.map( async (e)=>{

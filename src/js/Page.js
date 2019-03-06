@@ -1,33 +1,47 @@
 import React from 'react';
-import SearchResult from './components/search/SearchResult';
-import Results from './Results';
-import Loading from './components/LoadingPage';
-import Hello from './components/HelloPage';
+import UI from './components/ui';
+import HelloPage from './components/HelloPage';
+import LoadingPage from './components/LoadingPage';
 import ErrorPage from './components/ErrorPage';
+import Results from './Results';
 
 class Page extends React.Component {
 
-    determinePage(){
-        if(this.props.isStarted !== false) // isStarted becomes true when search is executed first time.
-        {
-            if (this.props.searching === false) // data.id becomes 0 when it fails to search data.
-            {
-                return(<Results searchResults={this.props.searchResults}/>)
-            }
-            else {
-                return (<Loading />);    
-            }
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            searchResults:[]
         }
-        else {
-            return (<Hello />);
+    }
+
+    componentDidMount() {
+        this.setState((props) => { return { searchResults: this.props.searchResults } })
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.searchResults!==this.props.searchResults)
+        {   
+            this.setState((props)=>{return{ searchResults:this.props.searchResults}});
         }
     }
 
     render(){
-        const CurrentPage = this.determinePage();
         return (
             <div>
-            {CurrentPage}
+            {(this.props.isStarted===true||
+              this.props.isLoading===true)?
+                    this.props.isLoading===false?
+                            this.props.searchResults.length>0?
+                                    <UI.Box>
+                                        <div className="d-flex flex-wrap">
+                                        <Results data={this.state.searchResults}/>
+                                        </div>
+                                    </UI.Box>:
+                            <ErrorPage/>:
+                    <LoadingPage/>:
+            <HelloPage/>
+            }
             </div>
         )
     }
