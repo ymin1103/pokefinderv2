@@ -26,6 +26,14 @@ const UI = {
         )
     },
 
+    srsubBox: (props) => {
+        return (
+            <div className="container-fluid bg-white shadow-sm align-center mh-50 pl-0 pr-0 mb-3 mt-3 config-res">
+                {props.children}
+            </div>
+        )
+    },
+
     toggleButton: (props) => {
         let ArrowDirection = props.toggleVal === true ? "up" : "down";
         return (<i className={`fas fa-arrow-${ArrowDirection}`} onClick={props.ClickEvent}></i>)
