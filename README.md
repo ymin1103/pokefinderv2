@@ -28,7 +28,8 @@ Following frameworks and library were used.
   <li><a href="https://github.com/webpack/webpack">Webpack</a></li>
   <li><a href="https://github.com/twbs/bootstrap">Bootstrap</a></li>
   <li><a href="https://github.com/PokeAPI/pokeapi-js-wrapper">pokeapi-js-wrapper</a></li>
-  <li><a href="https://github.com/FortAwesome/Font-Awesome">Font Awesome</a></li>  
+  <li><a href="https://github.com/FortAwesome/Font-Awesome">Font Awesome</a></li>
+  <li><a href="https://github.com/e-/Hangul.js">Hangul.js</li>
 </ul>
 
 <p>This site is built for educational purpose, and Pokémon And All Respective Names are Trademark & © of Nintendo</p>
@@ -59,7 +60,8 @@ veekun의 데이터는 기본적으로 영어로 이루어져 있습니다. 따�
   <li><a href="https://github.com/webpack/webpack">Webpack</a></li>
   <li><a href="https://github.com/twbs/bootstrap">Bootstrap</a></li>
   <li><a href="https://github.com/PokeAPI/pokeapi-js-wrapper">pokeapi-js-wrapper</a></li>
-  <li><a href="https://github.com/FortAwesome/Font-Awesome">Font Awesome</a></li>  
+  <li><a href="https://github.com/FortAwesome/Font-Awesome">Font Awesome</a></li>
+  <li><a href="https://github.com/e-/Hangul.js">Hangul.js</li>
 </ul>
 
 <p>이 사이트는 교육을 위한 목적으로 만들어졌으며 사이트 내의 컨텐츠의 저작권은 Nintendo에게 있습니다.</p>
