@@ -193,6 +193,8 @@ const Search = {
 
                     
             };
+
+            processedData.moves.sort((a, b) => { return a.method[0].level_learned_at - b.method[0].level_learned_at})
             
 
 

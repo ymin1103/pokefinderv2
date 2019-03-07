@@ -3,7 +3,8 @@ import UI from './components/ui';
 import HelloPage from './components/HelloPage';
 import LoadingPage from './components/LoadingPage';
 import ErrorPage from './components/ErrorPage';
-import Results from './Results';
+import SearchResults from './components/search/SearchResults';
+import DisplayData from './components/search/DisplayData';
 
 class Page extends React.Component {
 
@@ -11,7 +12,9 @@ class Page extends React.Component {
     {
         super(props);
         this.state = {
-            searchResults:[]
+            searchResults:[],
+            displayData:{},
+            mode:"init"
         }
     }
 
@@ -22,7 +25,11 @@ class Page extends React.Component {
     componentDidUpdate(prevProps){
         if(prevProps.searchResults!==this.props.searchResults)
         {   
-            this.setState((props)=>{return{ searchResults:this.props.searchResults}});
+            this.setState((props)=>{return{ searchResults:this.props.searchResults, mode:"search"}});
+        }
+        if(prevProps.displayData!==this.props.displayData)
+        {
+            this.setState((props) => { return { displayData: this.props.displayData, mode:"display"}});
         }
     }
 
@@ -33,11 +40,16 @@ class Page extends React.Component {
               this.props.isLoading===true)?
                     this.props.isLoading===false?
                             this.props.searchResults.length>0?
-                                    <UI.Box>
-                                        <div className="d-flex flex-wrap">
-                                        <Results data={this.state.searchResults}/>
-                                        </div>
-                                    </UI.Box>:
+                                    this.state.mode!=="display"?
+                                        <UI.Box>
+                                            <h2 className="text-center">Search results</h2>
+                                            <div className="d-flex flex-wrap">
+                                            <SearchResults data={this.state.searchResults}
+                                                     handleClick={this.props.ClickPokemonEvent}/>
+                                            </div>
+                                        </UI.Box>:
+                                        <DisplayData result={this.props.displayData}
+                                                   handleClick={this.props.ClickPokemonEvent}/>:
                             <ErrorPage/>:
                     <LoadingPage/>:
             <HelloPage/>

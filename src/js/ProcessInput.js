@@ -1,7 +1,7 @@
 import Hangul from 'hangul-js';
 import Searchdata from './config/Searchdata';
 
-const ProcessHangul = (input) => {
+const ProcessInput = (input) => {
     const Result = [];
 
         if (Hangul.isCompleteAll(input) === true &&
@@ -58,4 +58,4 @@ const ProcessHangul = (input) => {
 
 }
 
-export default ProcessHangul;
+export default ProcessInput;

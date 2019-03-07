@@ -28,7 +28,7 @@ const UI = {
 
     srsubBox: (props) => {
         return (
-            <div className="container-fluid bg-white align-center mh-50 pl-0 pr-0 mb-3 mt-3 config-res">
+            <div className="container-fluid bg-white shadow-sm align-center mh-50 pl-0 pr-0 mb-3 mt-3 config-res">
                 {props.children}
             </div>
         )

@@ -3,8 +3,17 @@
     100% {transform:rotate(360deg);}
 }
 
+@keyframes jump{
+    0% {transform:translateY(-5px);}
+    100% {transform:translateY(0px);}
+}
 
 .spinner-animation{
-    animation: spin 2s;
+    animation: spin 1s;
     animation-iteration-count: infinite;
+}
+
+.hover-animation:hover{
+    animation: jump 0.5s;
+    animation-iteration-count: 2;
 }
