@@ -53,8 +53,11 @@ class App extends React.Component {
     render(){
         return (
             <div>
-                <header className="text-center pb-3 bg-dark">
-                    <h1 className="display-4 font-weight-light text-white">PokeFinder</h1>
+                <header className="pb-3 bg-dark d-flex justify-content-center align-items-center">
+                    <h1 className="display-4 font-weight-light text-white mr-1">PokeFinder</h1>
+                    <a href="https://github.com/ymin1103/pokefinderv2" target="blank">
+                        <i class="fab fa-github fa-2x ml-1 text-white hover-animation"></i>
+                    </a>
                 </header>
                 <SearchBar isStarted={this.state.initiate}
                            isLoading={this.state.isLoading}
