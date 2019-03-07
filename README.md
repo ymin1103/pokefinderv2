@@ -29,7 +29,7 @@ Following frameworks and library were used.
   <li><a href="https://github.com/twbs/bootstrap">Bootstrap</a></li>
   <li><a href="https://github.com/PokeAPI/pokeapi-js-wrapper">pokeapi-js-wrapper</a></li>
   <li><a href="https://github.com/FortAwesome/Font-Awesome">Font Awesome</a></li>
-  <li><a href="https://github.com/e-/Hangul.js">Hangul.js</li>
+  <li><a href="https://github.com/e-/Hangul.js">Hangul.js</a></li>
 </ul>
 
 <p>This site is built for educational purpose, and Pokémon And All Respective Names are Trademark & © of Nintendo</p>
