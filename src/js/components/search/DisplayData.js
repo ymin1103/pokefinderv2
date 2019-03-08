@@ -1,16 +1,20 @@
 import React from 'react';
 import UI from '../ui';
+import Arrow from '../Arrow';
 import BasicInfo from '../info/BasicInfo';
 import MoveInfo from '../info/MoveInfo';
 import EvolutionInfo from '../info/EvolutionInfo';
 import AbilityInfo from '../info/AbilityInfo';
 
-class SearchResult extends React.Component {
+class DisplayData extends React.Component {
 
     render() {
         const res= this.props.result;
         return (
             <div>
+                <UI.Box>
+                    <Arrow data={res.id} ClickEvent={this.props.handleClick}/>
+                </UI.Box>
                 <UI.Box>
                     <BasicInfo data={res}/>
                 </UI.Box>
@@ -29,4 +33,4 @@ class SearchResult extends React.Component {
     }
 }
 
-export default SearchResult;    
+export default DisplayData;    

@@ -31,7 +31,7 @@ class BasicInfo extends React.Component {
             }),
             pokedexNo: (this.props.data.pokedexNo.length !== 1) ?
                 this.props.data.pokedexNo[this.props.data.pokedexNo.length - 1].entry_number :
-                this.props.data.pokedexNo[0],
+                this.props.data.pokedexNo[0].entry_number,
             types: this.props.data.types.map((e) => {
                 return (<p className={`type-${e.name} ml-1 mr-1`}>{e.names[Languages.korean - 2].name}</p>)
             }),
@@ -51,9 +51,9 @@ class BasicInfo extends React.Component {
             <div className="d-flex flex-column justify-content-center align-items-center">
                 <div className="row w-75">
                     <div className="col-md-2 d-flex justify-content-center">
-                        {this.state.bInfo.front_image!==null?<img src={this.state.bInfo.front_image} />:
+                        {this.state.bInfo.front_image!==null?<img className="hover-animation" src={this.state.bInfo.front_image} />:
                         <i className="fas fa-cat fa-5x mb-3 binfo-cat-icon text-center"></i>}
-                        {this.state.bInfo.back_image != null && <img src={this.state.bInfo.back_image} />}
+                        {this.state.bInfo.back_image != null && <img className="hover-animation" src={this.state.bInfo.back_image} />}
                     </div>
                     <div className="col-md-5 d-flex justify-content-center flex-column">
                         <p className="h3 mr-3 text-center">No.{this.state.bInfo.pokedexNo}</p>
