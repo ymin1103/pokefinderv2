@@ -31,7 +31,7 @@ class BasicInfo extends React.Component {
             }),
             pokedexNo: (this.props.data.pokedexNo.length !== 1) ?
                 this.props.data.pokedexNo[this.props.data.pokedexNo.length - 1].entry_number :
-                this.props.data.pokedexNo[0].entry_number,
+                this.props.data.pokedexNo[0],
             types: this.props.data.types.map((e) => {
                 return (<p className={`type-${e.name} ml-1 mr-1`}>{e.names[Languages.korean - 2].name}</p>)
             }),
