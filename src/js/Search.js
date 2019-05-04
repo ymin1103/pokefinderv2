@@ -28,6 +28,9 @@ const Search = {
                 )
             })
         })
+
+        results.sort((a,b)=>{return a.id - b.id});
+
         return results;
     },
 
