@@ -3,7 +3,7 @@ import Searchdata from './config/Searchdata';
 
 const ProcessInput = (input) => {
     const Result = [];
-
+        // 검색어가 완전한 문자로 이루어져 있을 경우
         if (Hangul.isCompleteAll(input) === true &&
             Hangul.isConsonantAll(input) === false)
             {
@@ -20,6 +20,7 @@ const ProcessInput = (input) => {
 
                 return Result;
             }
+        // 검색어가 자음으로만 이루어져 있을 경우
         else if(Hangul.isCompleteAll(input) === false &&
                 Hangul.isConsonantAll(input) === true)
             {
@@ -42,6 +43,7 @@ const ProcessInput = (input) => {
 
                 return Result;
             }
+        //그외의 데이터일 경우
         else {
                 if(parseInt(input)!==NaN){
                 return [{

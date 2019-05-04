@@ -27,6 +27,9 @@ class EvolutionInfo extends React.PureComponent {
                 evolArray.push(tempObj);
             }
         })
+
+        evolArray.sort((a,b)=>{return a.id - b.id});
+
         const Evoldata = evolArray.map((e) => {
             return (
                 <div className="d-flex flex-column justify-content-center">
