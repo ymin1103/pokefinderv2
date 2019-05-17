@@ -41,6 +41,7 @@
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
-    "hangul-js": "^0.2.5"
+    "hangul-js": "^0.2.5",
+    "react-redux": "^7.0.3"
   }
 }
