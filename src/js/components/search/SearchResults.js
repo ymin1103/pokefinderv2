@@ -7,7 +7,7 @@ const SearchResults = (props) => {
         return(
             <UI.srsubBox>
                 <div className="d-flex h-100 align-items-center justify-content-between hover-animation"
-                     onClick={()=>{props.handleClick(event, e.id)}}>
+                     onClick={() => { props.clickEvent(event, e.id) }}>
                     {e.img!==null?<img className="img-res ml-3" src={e.img} />:
                     <i className="fas fa-4x fa-cat ml-3"></i>}
                     <div className="d-flex flex-column align-items-center justify-content-evenly w-75">

@@ -36,9 +36,9 @@ class EvolutionInfo extends React.PureComponent {
                     {e.sprite !== null ? 
                         <img className="evol-img" 
                         src={e.sprite} 
-                        onClick={()=>this.props.handleClick(event,e.id)}/> :
+                        onClick={() => this.props.clickEvent(event,e.id)}/> :
                         <i className="fas fa-5x fa-cat mb-3" 
-                        onClick={() => this.props.handleClick(event, e.id)}></i>}
+                        onClick={() => this.props.clickEvent(event, e.id)}></i>}
                     <p className="text-center">{e.name}</p>
                 </div>
             )

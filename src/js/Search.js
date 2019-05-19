@@ -17,7 +17,9 @@ const Search = {
         const results = [];
 
         inputArray.map( async (e)=>{
-            await P.getPokemonByName(e.id).then((resolve)=>{
+            await P.getPokemonByName(e.id)
+            .catch((error) => { console.warn(error); })
+            .then((resolve)=>{
                 results.push(
                     {
                         id:e.id,

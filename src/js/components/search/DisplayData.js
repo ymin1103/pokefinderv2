@@ -13,7 +13,7 @@ class DisplayData extends React.Component {
         return (
             <div>
                 <UI.Box>
-                    <Arrow data={res.id} ClickEvent={this.props.handleClick}/>
+                    <Arrow data={res.id} clickEvent={this.props.clickEvent}/>
                 </UI.Box>
                 <UI.Box>
                     <BasicInfo data={res}/>
@@ -26,7 +26,7 @@ class DisplayData extends React.Component {
                 </UI.Box>
                 <UI.Box>
                     <EvolutionInfo data={res.evolution} 
-                                   handleClick={this.props.handleClick}/>
+                                   clickEvent={this.props.clickEvent}/>
                 </UI.Box>
             </div>
         );

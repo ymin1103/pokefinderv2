@@ -6,57 +6,79 @@ import ErrorPage from './components/ErrorPage';
 import SearchResults from './components/search/SearchResults';
 import DisplayData from './components/search/DisplayData';
 
+import { connect } from 'react-redux'
+import * as actions from './redux/actions/Action';
+
+import { getPokemonData } from './redux/actions/getData';
+
+const mapStateToProps = (state) => {
+    return {
+        pending: state.getData.pending,
+        error: state.getData.error,
+        result: state.getData.result,
+        pokedata: state.getData.pokedata,
+        mode:state.getData.mode
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeSearch: (event) => { dispatch(actions.changeSearch(event)) },
+        clickEvent: (event, input) => {
+            event.preventDefault();
+            dispatch(getPokemonData(input));
+        }
+    };
+}
+
+const determinePage = (props) => {
+    switch(props.pending){
+        case true:
+            return (<LoadingPage />)
+        case false:
+            if(props.error===true)return (<ErrorPage/>)
+            else{
+                if (props.result.length === 0)return(<HelloPage/>);
+                else {
+                    switch(props.mode){
+                        case actions.mode.search:
+                        return (
+                        <UI.Box>
+                            <div className="d-flex flex-wrap">
+                                <SearchResults data={props.result} 
+                                                clickEvent={props.clickEvent}/>
+                            </div>
+                        </UI.Box>
+                        )
+                        case actions.mode.display:
+                        return(
+                            <DisplayData result={props.pokedata} 
+                                            clickEvent={props.clickEvent}/>
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+
 class Page extends React.Component {
 
     constructor(props)
     {
         super(props);
-        this.state = {
-            searchResults:[],
-            displayData:{},
-            mode:"init"
-        }
-    }
-
-    componentDidMount() {
-        this.setState((props) => { return { searchResults: this.props.searchResults } })
-    }
-
-    componentDidUpdate(prevProps){
-        if(prevProps.searchResults!==this.props.searchResults)
-        {   
-            this.setState((props)=>{return{ searchResults:this.props.searchResults, mode:"search"}});
-        }
-        if(prevProps.displayData!==this.props.displayData)
-        {
-            this.setState((props) => { return { displayData: this.props.displayData, mode:"display"}});
-        }
     }
 
     render(){
+
+        const page = determinePage(this.props);
+
         return (
             <div>
-            {(this.props.isStarted===true||
-              this.props.isLoading===true)?
-                    this.props.isLoading===false?
-                            this.props.searchResults.length>0?
-                                    this.state.mode!=="display"?
-                                        <UI.Box>
-                                            <h2 className="text-center">Search results</h2>
-                                            <div className="d-flex flex-wrap">
-                                            <SearchResults data={this.state.searchResults}
-                                                     handleClick={this.props.ClickPokemonEvent}/>
-                                            </div>
-                                        </UI.Box>:
-                                        <DisplayData result={this.props.displayData}
-                                                   handleClick={this.props.ClickPokemonEvent}/>:
-                            <ErrorPage/>:
-                    <LoadingPage/>:
-            <HelloPage/>
-            }
+            {page}
             </div>
         )
     }
 }
 
-export default Page;
+export default connect(mapStateToProps, mapDispatchToProps)(Page);
