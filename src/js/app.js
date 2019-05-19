@@ -1,10 +1,8 @@
 import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from './Search';
 import SearchBar from './components/search/SearchBar';
 import Page from './Page';
-import ProcessInput from './ProcessInput';
 import '../scss/index.scss';
 
 import { Provider } from 'react-redux';
@@ -38,6 +36,10 @@ class App extends React.Component {
                 </header>
                 <SearchBar/>
                 <Page/>
+                <footer className="text-center pb-3 bg-dark">
+                    <p className="h4 font-weight-light text-white">Made by ymin1103.</p>
+                    <p className="h4 font-weight-light text-white">Used Pokeapi v2.0.</p>
+                </footer>
             </div>    
         )
     }

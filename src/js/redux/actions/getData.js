@@ -14,14 +14,11 @@ export const getSearchResults = (input) => async dispatch => {
             dispatch({type:'GET_POST_PENDING'});
     const results = await Search.GetResults(ProcessInput(input));
     setTimeout(()=>{
-        console.log(results.length);
         if (results !== undefined && results.length > 0) {
-            console.log(results);
             dispatch({ type: 'GET_POST_SUCCESS', result: results })
         }
 
         else {
-            console.log(results);
             dispatch({ type: 'GET_POST_FAILURE' })
         }
     },1000)    
@@ -32,14 +29,11 @@ export const getPokemonData = (input) => async dispatch => {
     if (input === '') input = 1;
     dispatch({ type: 'GET_POST_PENDING' });
     const results = await Search.GetData(input);
-        console.log(results);
         if (results !== undefined) {
-            console.log(results);
             dispatch({ type: 'GET_POKEMON_SUCCESS', pokedata: results })
         }
 
         else {
-            console.log(results);
             dispatch({ type: 'GET_POST_FAILURE' })
         }
 }
