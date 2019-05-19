@@ -1,20 +1,23 @@
-import {appFlags} from '../actions';
-import { CLICK_SEARCH } from '../actions/Action';
+import * as types from '../actions/Action';
+import getData from '../actions/getData';
+
+import {combineReducers} from 'redux';
 
 const initialState = {
-    isInitiated:false,
-    isLoading:false
+    value:''
 }
 
 const SearchBar = ( state = initialState, action) => {
     switch(action.type){
-        case CHANGE_SEARCH:
-            return {...state, value : event.target.value}
-        case CLICK_SEARCH:
-            return {...state, isLoading : true}
+        case types.CHANGE_SEARCH:
+            return {...state, value : action.target.value}
         default:
-        return state
+        return state;
     }
 }
 
-export default SearchBar;
+const rootReducer = combineReducers({
+    SearchBar, getData
+})
+
+export default rootReducer;
