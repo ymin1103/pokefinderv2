@@ -22,9 +22,10 @@ Because of these reasons, I tried display data in korean as much as I can, but s
 This site is under constuction now, so many feature will be updated.
 </p>
 
-Following frameworks and library were used.
+Following libraries were used.
 <ul>
   <li><a href="https://github.com/facebook/react">React</a></li>
+  <li><a href="https://github.com/reduxjs/redux">Redux</a></li>
   <li><a href="https://github.com/webpack/webpack">Webpack</a></li>
   <li><a href="https://github.com/twbs/bootstrap">Bootstrap</a></li>
   <li><a href="https://github.com/PokeAPI/pokeapi-js-wrapper">pokeapi-js-wrapper</a></li>
@@ -53,10 +54,11 @@ veekun의 데이터는 기본적으로 영어로 이루어져 있습니다. 따�
 이는 앞으로 수정 예정에 있습니다.
 </p>
 
-<p>이 사이트를 만들기 위해 다음과 같은 라이브러리와 프레임워크가 사용되었습니다.</p>
+<p>이 사이트를 만들기 위해 다음과 같은 라이브러리가 사용되었습니다.</p>
 
 <ul>
   <li><a href="https://github.com/facebook/react">React</a></li>
+  <li><a href="https://github.com/reduxjs/redux">Redux</a></li>
   <li><a href="https://github.com/webpack/webpack">Webpack</a></li>
   <li><a href="https://github.com/twbs/bootstrap">Bootstrap</a></li>
   <li><a href="https://github.com/PokeAPI/pokeapi-js-wrapper">pokeapi-js-wrapper</a></li>
